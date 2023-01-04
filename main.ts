@@ -94,60 +94,18 @@ export default class MyPlugin extends Plugin {
 			},
 		});
 
-		/* The follwing commands are used to set headings via commands */
-
-		// Add a heading 1
+		// Add a TODO: comment
 		this.addCommand({
-			id: "add-heading1",
-			name: "Add H1",
+			id: "add-todo-comment",
+			name: "Add a TODO comment",
 			editorCallback: (editor: Editor) => {
-				editor.replaceRange("# ", editor.getCursor());
+				editor.replaceRange("%%TODO: %%", editor.getCursor());
 				const position = editor.getCursor();
-				editor.setCursor(position.line, position.ch + 2);
-			},
-		});
-
-		// Add a heading 2
-		this.addCommand({
-			id: "add-heading2",
-			name: "Add H2",
-			editorCallback: (editor: Editor) => {
-				editor.replaceRange("## ", editor.getCursor());
-				const position = editor.getCursor();
-				editor.setCursor(position.line, position.ch + 3);
-			},
-		});
-
-		// Add a heading 3
-		this.addCommand({
-			id: "add-heading3",
-			name: "Add H3",
-			editorCallback: (editor: Editor) => {
-				editor.replaceRange("### ", editor.getCursor());
-				const position = editor.getCursor();
-				editor.setCursor(position.line, position.ch + 4);
-			},
-		});
-
-		// Add a heading 4
-		this.addCommand({
-			id: "add-heading4",
-			name: "Add H4",
-			editorCallback: (editor: Editor) => {
-				editor.replaceRange("#### ", editor.getCursor());
-				const position = editor.getCursor();
-				editor.setCursor(position.line, position.ch + 5);
-			},
-		});
-
-		// Add a heading 5
-		this.addCommand({
-			id: "add-heading5",
-			name: "Add H5",
-			editorCallback: (editor: Editor) => {
-				editor.replaceRange("##### ", editor.getCursor());
-				const position = editor.getCursor();
-				editor.setCursor(position.line, position.ch + 6);
+				const retract_length = 8;
+				editor.setCursor({
+					line: position.line,
+					ch: position.ch + retract_length,
+				});
 			},
 		});
 
